@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Career Compass｜实习准备助手</title>
+  <link rel="stylesheet" href="src/styles.css">
+  <link rel="stylesheet" href="src/static.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand"><div class="logo">cc</div><div><strong>Career Compass</strong><span>实习准备助手</span></div></div>
+    <nav>
+      <button class="active" data-nav="home">⌂ <span>今日计划</span></button>
+      <button data-nav="result">✦ <span>我的建议</span></button>
+      <button data-nav="history">◷ <span>准备记录</span></button>
+    </nav>
+    <div class="sideBottom">
+      <div class="mini-progress"><div class="row"><span>本周准备度</span><b id="progressText">42%</b></div><div class="bar"><i id="progressBar" style="width:42%"></i></div><small id="progressNote">完成 3 / 7 项</small></div>
+      <button class="profile" id="profileBtn"><div class="avatar">林</div><div><b id="sideName">林同学</b><small id="sideMajor">信息管理专业</small></div><span>›</span></button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header><div><p class="eyebrow">THURSDAY · 10月 8日</p><h1 id="pageTitle">把下一步想清楚，再开始准备。</h1><p class="sub">面向第一次实习的个性化行动计划</p></div><button class="icon-btn" id="topProfile" aria-label="个人信息">♙</button></header>
+
+    <section class="content view active" id="homeView">
+      <div class="welcome"><div><span class="pill blue">首次准备</span><h2>先从一个目标开始</h2><p>不需要一次想清所有事情。告诉我你正在准备什么，我会帮你找到最值得先做的一步。</p></div><div class="illustration">◎</div></div>
+      <div class="section-head"><div><h3>建立你的准备档案</h3><p>信息越具体，建议越贴近你现在的情况</p></div><span class="step-count">1 / 2</span></div>
+      <form class="form-card" id="profileForm">
+        <label>你希望尝试的方向 <span>必填</span><input id="goal" value="数据分析实习生" placeholder="例如：产品运营实习生"></label>
+        <label>你现在处于什么阶段 <span>必填</span><select id="stage"><option>还没开始，不知道从哪里下手</option><option selected>已经投过一些，但还没有面试</option><option>有面试机会，正在集中准备</option></select></label>
+        <div class="two-col"><label>你的专业<input id="major" value="信息管理与信息系统"></label><label>怎么称呼你<input id="name" value="林同学"></label></div>
+        <div id="formError" class="inline-error hidden">请先填写目标方向和当前阶段，再生成建议。</div>
+        <div class="form-actions"><span>ⓘ 约需 2 分钟，之后可以随时修改</span><button class="primary" type="submit">生成我的准备建议 <b>→</b></button></div>
+        <button type="button" class="demo-link" id="simulateError">演示：AI 建议生成失败</button>
+      </form>
+      <div class="resume"><div class="resume-icon">↻</div><div><b>上次准备到这里</b><p>你在 10 月 5 日完成了“目标梳理”</p></div><button class="text-btn" data-nav="result">继续查看 →</button></div>
+    </section>
+
+    <section class="content view" id="loadingView">
+      <div class="state-card"><div class="spinner"></div><h2>正在整理最值得先做的事</h2><p>系统正在结合你的目标、阶段和已有经历生成建议……</p><small>演示数据，不会上传个人信息</small></div>
+    </section>
+
+    <section class="content view" id="errorView">
+      <div class="state-card error-state"><div class="state-icon">!</div><h2>这次没有生成成功</h2><p>可能是连接暂时不稳定。你的填写内容已经保留，可以重试或返回修改。</p><div><button class="primary" id="retryBtn">重新生成</button><button class="outline" data-nav="home">返回修改</button></div></div>
+    </section>
+
+    <section class="content view" id="resultView">
+      <div class="result-top"><div><span class="pill green">已为你生成</span><h2>先做这 3 件事，别被信息淹没</h2><p>基于你的目标、经历和当前阶段，建议按影响力从上到下推进。</p></div><button class="outline" data-nav="home">✎ 修改信息</button></div>
+      <div class="context-line"><div class="context-chip">◎ <span>目标方向</span><b id="resultGoal">数据分析实习生</b></div><div class="context-chip">◷ <span>当前阶段</span><b id="resultStage">投递后等待反馈</b></div><div class="context-chip">✦ <span>建议依据</span><b>你的经历与目标差距</b></div></div>
+      <div class="recommend-grid">
+        <div class="recommend-list">
+          <button class="recommend selected" data-rec="0"><div class="rec-icon red">🎯</div><div class="rec-body"><div class="rec-title"><b>先补齐一份可验证的项目案例</b><span class="tag red">优先级高</span></div><p>把课程作业改写成“问题—行动—结果”，比继续泛读岗位要求更能提升通过率。</p></div><span>→</span></button>
+          <button class="recommend" data-rec="1"><div class="rec-icon orange">🧩</div><div class="rec-body"><div class="rec-title"><b>用 30 分钟建立技能缺口清单</b><span class="tag orange">本周完成</span></div><p>优先确认 SQL 查询、数据可视化和业务表达三项能力的真实熟练度。</p></div><span>→</span></button>
+          <button class="recommend" data-rec="2"><div class="rec-icon blue">💬</div><div class="rec-body"><div class="rec-title"><b>准备一次低压力的模拟沟通</b><span class="tag blue">建议尝试</span></div><p>找同学进行 15 分钟项目讲解，练习把技术细节说给非技术面试官听。</p></div><span>→</span></button>
+        </div>
+        <div class="detail-panel"><div class="detail-head"><span class="label" id="detailCount">建议 1 / 3</span><span>💡</span></div><h3 id="detailTitle">先补齐一份可验证的项目案例</h3><p id="detailText">因为目标岗位重视实际产出，而你目前的经历描述还停留在任务层。</p><div class="reason"><b>为什么是现在</b><span id="detailWhy">它会直接影响你下一次投递的可信度，并且今天就能完成第一步。</span></div><div class="next"><span>下一步</span><b id="detailAction">整理项目案例</b><button class="primary" id="actionBtn">开始行动 →</button></div></div>
+      </div>
+      <div class="feedback"><div><b>这条建议对你有帮助吗？</b><span>你的反馈会让下一次建议更准确</span></div><button data-feedback="有帮助">✓ 有帮助</button><button data-feedback="不太适合">× 不太适合</button></div>
+    </section>
+
+    <section class="content view" id="historyView"><div class="result-top"><div><span class="pill blue">持续使用</span><h2>准备记录</h2><p>回来时可以继续上次的行动，也能看到信息修改后的建议变化。</p></div></div><div class="history-card"><div class="history-item"><div class="history-icon green">✓</div><div><b>完成首次目标梳理</b><p>10月8日 09:42 · 数据分析实习生</p></div><span>已完成</span></div><div class="history-item"><div class="history-icon purple">▤</div><div><b>生成第一版准备建议</b><p>10月8日 09:48 · 共 3 条建议</p></div><span>已保存</span></div><div class="history-item" id="actionHistory"><div class="history-icon orange">→</div><div><b>尚未开始具体行动</b><p>选择一条建议后会记录在这里</p></div><span>待行动</span></div></div></section>
+  </main>
+</div>
+
+<div class="overlay hidden" id="profileModal"><div class="modal"><div class="modal-head"><h3>个人信息</h3><button class="icon-btn close-modal">×</button></div><label>称呼<input id="modalName" value="林同学"></label><label>专业<input id="modalMajor" value="信息管理与信息系统"></label><button class="primary full" id="saveProfile">保存修改</button></div></div>
+<div class="overlay hidden" id="actionModal"><div class="modal"><div class="modal-head"><h3>确认开始行动</h3><button class="icon-btn close-action">×</button></div><p class="modal-copy">系统会将这一步加入准备记录。你也可以取消，建议状态不会被错误标记为已完成。</p><div class="modal-actions"><button class="outline close-action">取消</button><button class="primary" id="confirmAction">确认开始</button></div></div></div>
+<div class="toast hidden" id="toast">✓ <span></span></div>
+<script src="src/app.js"></script>
+</body>
+</html>
